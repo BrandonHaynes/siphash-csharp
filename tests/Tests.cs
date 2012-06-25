@@ -11,6 +11,11 @@ namespace BrandonHaynes.Security.SipHash
         public static readonly byte[] SpecificationKey = Enumerable.Range(0, 16).Select(i => (byte)i).ToArray();
         public static readonly byte[] SpecificationMessage = Enumerable.Range(0, 15).Select(i => (byte)i).ToArray();
 
+        /***
+         * Tests adapted from https://github.com/emboss/siphash-java/blob/master/test/com/github/emboss/siphash/SipHashTest.java
+         * Thanks to Martin Bosslet for these, which allowed me to quickly verify (presumable) correct functionality.
+        ***/
+
         public static void TestSpecification()
             {
             using (var hash = new SipHash(SpecificationKey))
