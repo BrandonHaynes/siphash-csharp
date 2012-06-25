@@ -9,11 +9,11 @@ namespace BrandonHaynes.Security.SipHash
     public sealed class SipHash: KeyedHashAlgorithm
         {
         // Minimum rounds for PRF security per §3
-        public const uint DefaultCompressionRounds = 2;
-        public const uint DefaultFinalizationRounds = 4;
+        public const int DefaultCompressionRounds = 2;
+        public const int DefaultFinalizationRounds = 4;
 
-        public uint CompressionRounds { get; private set; }
-        public uint FinalizationRounds { get; private set; }
+        public int CompressionRounds { get; private set; }
+        public int FinalizationRounds { get; private set; }
 
         [SecurityCritical]
         private SipState _state;
@@ -24,7 +24,7 @@ namespace BrandonHaynes.Security.SipHash
         // Total bytes encountered so far
         private ulong _totalBytes;
 
-        public SipHash(byte[] key, uint compressionRounds, uint finalizationRounds)
+        public SipHash(byte[] key, int compressionRounds, int finalizationRounds)
             {
             Key = key;
             CompressionRounds = compressionRounds;
@@ -52,7 +52,7 @@ namespace BrandonHaynes.Security.SipHash
             if(message == null) throw new ArgumentNullException("message");
 
             // Process blocks of 8 bytes each, see §2.2
-            var words =(uint)((_remainder.Length + length)/8); // 64-bit blocks
+            var words = (_remainder.Length + length)/8; // 64-bit blocks
             // Join any remainder from a previous chunk with the new data
             var data = _remainder.Concat(message.ArraySkip(offset).Take(length));
             // Begin enumeration of our resulting bytestream
@@ -80,7 +80,7 @@ namespace BrandonHaynes.Security.SipHash
 
         #endregion
 
-        internal static void ValidateArguments(ICollection<byte> key, uint compressionRounds, uint finalizationRounds)
+        internal static void ValidateArguments(ICollection<byte> key, int compressionRounds, int finalizationRounds)
             {
             if (key == null)
                 throw new ArgumentNullException("key");

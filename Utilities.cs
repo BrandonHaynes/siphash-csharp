@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 
 namespace BrandonHaynes.Security.SipHash
     {
     internal static class Utilities
         {
         [DebuggerStepThrough]
-        public static void Repeat(this uint n, Action f)
+        public static void Repeat(this int n, Action f)
             { for (var index = 0; index < n; index++) f(); }
 
         [DebuggerStepThrough]
@@ -60,9 +59,5 @@ namespace BrandonHaynes.Security.SipHash
         [DebuggerStepThrough]
         public static ulong RotateLeft(this ulong value, int count)
             { return (value << count) | (value >> ((sizeof(ulong) * 8) - count)); }
-
-        //TODO
-        public static string ToHex(ulong value)
-            { return BitConverter.ToString(BitConverter.GetBytes(value).Reverse().ToArray()); }
         }
     }

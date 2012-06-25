@@ -7,12 +7,12 @@ namespace BrandonHaynes.Security.SipHash
     [SecurityCritical]
     internal class SipState
         {
-        private uint CompressionRounds { get; set; }
-        private uint FinalizationRounds { get; set; }
+        private int CompressionRounds { get; set; }
+        private int FinalizationRounds { get; set; }
 
         private readonly ulong[] _v = new ulong[4];
 
-        internal SipState(byte[] key, uint compressionRounds, uint finalizationRounds)
+        internal SipState(byte[] key, int compressionRounds, int finalizationRounds)
             {
             SipHash.ValidateArguments(key, compressionRounds, finalizationRounds);
             
