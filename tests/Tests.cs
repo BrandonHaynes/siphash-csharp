@@ -13,7 +13,7 @@ namespace BrandonHaynes.Security.SipHash
 
         /***
          * Tests adapted from https://github.com/emboss/siphash-java/blob/master/test/com/github/emboss/siphash/SipHashTest.java
-         * Thanks to Martin Bosslet for these, which allowed me to quickly verify (presumable) correct functionality.
+         * Thanks to Martin Boßlet for these, which allowed me to quickly verify (presumable) correct functionality.
         ***/
 
         public static void TestSpecification()
